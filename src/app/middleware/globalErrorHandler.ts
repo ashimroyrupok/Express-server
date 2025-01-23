@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { NextFunction, Request, Response } from 'express';
-import { ZodError } from 'zod';
-import { TErrorSource } from '../interface/error.interface';
-import config from '../config';
-import { handleZodError } from '../errors/handleZodError';
-import handleValidationError from '../errors/handleValidatonError';
-import handleCastError from '../errors/handleCastError';
-import handleDuplicateCastError from '../errors/handleDuplicateCastError';
-import AppError from '../errors/AppError';
+import { NextFunction, Request, Response } from "express";
+import { ZodError } from "zod";
+import { TErrorSource } from "../interface/error.interface";
+import config from "../config";
+import { handleZodError } from "../errors/handleZodError";
+import handleValidationError from "../errors/handleValidatonError";
+import handleCastError from "../errors/handleCastError";
+import handleDuplicateCastError from "../errors/handleDuplicateCastError";
+import AppError from "../errors/AppError";
 
 const globalErrorHandler = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,15 +15,15 @@ const globalErrorHandler = (
   req: Request,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  next: NextFunction,
+  next: NextFunction
 ) => {
   let statusCode = 500;
-  let message = 'Something went wrong';
+  let message = "Something went wrong";
 
   let errorSources: TErrorSource = [
     {
-      path: '',
-      message: 'something went wrong',
+      path: "",
+      message: "something went wrong",
     },
   ];
   // handle zod errors
@@ -34,14 +34,14 @@ const globalErrorHandler = (
     errorSources = simplifiedError.errorSources;
   }
   // handle mongoose error from here
-  else if (err?.name === 'ValidationError') {
+  else if (err?.name === "ValidationError") {
     const simplifiedError = handleValidationError(err);
     message = simplifiedError?.message;
     statusCode = simplifiedError?.statusCode;
     errorSources = simplifiedError.errorSources;
   }
   // handle cast error from here
-  else if (err?.name === 'CastError') {
+  else if (err?.name === "CastError") {
     const simplifiedError = handleCastError(err);
     message = simplifiedError?.message;
     statusCode = simplifiedError?.statusCode;
@@ -60,7 +60,7 @@ const globalErrorHandler = (
     statusCode = err?.statusCode;
     errorSources = [
       {
-        path: '',
+        path: "",
         message: err.message,
       },
     ];
@@ -71,7 +71,7 @@ const globalErrorHandler = (
 
     errorSources = [
       {
-        path: '',
+        path: "",
         message: err.message,
       },
     ];
@@ -83,7 +83,7 @@ const globalErrorHandler = (
     message,
     errorSources,
     error: err,
-    stack: config.node_env === 'development' ? err.stack : null,
+    stack: config.node_environment === "development" ? err.stack : null,
   });
 };
 

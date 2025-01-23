@@ -2,7 +2,7 @@
 import {
   TErrorSource,
   TGenericResponseError,
-} from '../interface/error.interface';
+} from "../interface/error.interface";
 
 const handleDuplicateCastError = (err: any): TGenericResponseError => {
   // extract value using double quotes using regex
@@ -13,7 +13,7 @@ const handleDuplicateCastError = (err: any): TGenericResponseError => {
 
   const errorSources: TErrorSource = [
     {
-      path: '',
+      path: "",
       message: `${extractedMessage} is already exist`,
     },
   ];
@@ -22,7 +22,7 @@ const handleDuplicateCastError = (err: any): TGenericResponseError => {
 
   return {
     statusCode,
-    message: 'Validation Error',
+    message: "Validation Error",
     errorSources,
   };
 };
