@@ -44,10 +44,7 @@ const createAnUserIntoDB = async ( payload: TUser) => {
   return result;
 };
 
-/**
- * ----------------------- get all users ----------------------
- * @return return all users
- */
+
 const getAllUsersFromDB = async (query: Record<string, any>) => {
   const userQuery = new QueryBuilder(User.find({ isDeleted: false }), query)
     .search(searchableFields)
@@ -60,12 +57,7 @@ const getAllUsersFromDB = async (query: Record<string, any>) => {
   return { meta, result };
 };
 
-/**
- * -----------------  get me  -----------------
- * @param email email address
- * @param role user role
- * @returns own user data based on jwt payload data
- */
+
 const getMe = async (email: string, role: string) => {
   const result = await User.findOne({ email, role });
   return result;

@@ -26,7 +26,9 @@ router.post(
 );
 
 // get all users
-router.get("/", auth("admin"), UserControllers.getAllUsers);
+router.get("/", 
+  // auth("admin"),
+   UserControllers.getAllUsers);
 
 // get me route
 router.get("/getMe", auth("user", "admin"), UserControllers.getMe);
