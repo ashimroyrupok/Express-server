@@ -10,15 +10,16 @@ const productSchema = new Schema<TProduct, IProductModel>(
       required: [true, "product name is required"],
     },
     category: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: [true, "product category is required"],
+      ref: "Category",
     },
     description: {
       type: String,
       required: [true, "product description is required"],
     },
-    images: {
-      type: [String],
+    image: {
+      type: String,
       required: [true, "product description is required"],
     },
     price: {

@@ -23,7 +23,7 @@ const getAllProductFromDB = async (query: Record<string, unknown>) => {
   const result = await productQuery.modelQuery;
   const meta = await productQuery.countTotal();
 
-  return {result,meta};
+  return { result, meta };
 };
 
 const getSingleProductFromDB = async (id: string) => {

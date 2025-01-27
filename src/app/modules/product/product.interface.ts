@@ -1,12 +1,12 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 
 export type TProduct = {
   name: string;
   description: string;
   price: number;
   stock: number;
-  category: string;
-  images: string[];
+  category: Types.ObjectId ;
+  image: string;
   isDeleted: boolean;
 };
 

@@ -5,9 +5,7 @@ const createProductValidationSchema = z.object({
     name: z.string().nonempty("Product name is required"),
     category: z.string().nonempty("Product category is required"),
     description: z.string().nonempty("Product description is required"),
-    images: z
-      .array(z.string().nonempty())
-      .min(1, "At least one image is required"),
+    image: z.string().nonempty().min(1, "At least one image is required"),
     price: z
       .number()
       .min(0, "Price must be a positive number")
@@ -30,10 +28,7 @@ const productUpdateValidationSchema = z.object({
       .string()
       .nonempty("Product description is required")
       .optional(),
-    images: z
-      .array(z.string().nonempty())
-      .min(1, "At least one image is required")
-      .optional(),
+    image: z.string().nonempty().min(1, "At least one image is required"),
     price: z
       .number()
       .min(0, "Price must be a positive number")
